@@ -45,25 +45,51 @@
 
 // Problem # 4
 
-function gonoVote(array) {
-  if (!Array.isArray(array)) {
+// function gonoVote(array) {
+//   if (!Array.isArray(array)) {
+//     return "Invalid";
+//   }
+//   let ha = 0;
+//   let na = 0;
+//   for (const item of array) {
+//     if (item === "ha") {
+//       ha++;
+//     } else if (item === "na") {
+//       na++;
+//     }
+//   }
+//   if (ha === na) {
+//     return "equal";
+//   } else if (ha > na) {
+//     return true;
+//   } else return false;
+// }
+// const arr = ["ha", "na", "na", "na"];
+// const result = gonoVote(arr);
+// console.log(result);
+
+// Problem # 5
+
+function analyzeText(str) {
+  if (typeof str !== "string" || str.trim() === "") {
     return "Invalid";
   }
-  let ha = 0;
-  let na = 0;
-  for (const item of array) {
-    if (item === "ha") {
-      ha++;
-    } else if (item === "na") {
-      na++;
+  const newStr = str.split(" ");
+  let long = newStr[0];
+  let sum = 0;
+  for (const val of newStr) {
+    const sumOfLength = val.length;
+    sum += sumOfLength;
+    if (long.length < val.length) {
+      long = val;
     }
   }
-  if (ha === na) {
-    return "equal";
-  } else if (ha > na) {
-    return true;
-  } else return false;
+  return {
+    longwords: long,
+    token: sum,
+  };
 }
-const arr = ["ha", "na", "na", "na"];
-const result = gonoVote(arr);
+
+const str = "I am Learning JavaScrip with Programming Hero.";
+const result = analyzeText(str);
 console.log(result);
