@@ -1,44 +1,59 @@
 // Problem # 1
 
 // function newPrice(currentPrice, discount) {
-//   if (typeof currentPrice === "string" || typeof discount === "string")
+//   if (
+//     typeof currentPrice !== "number" ||
+//     typeof discount !== "number" ||
+//     discount > 100 ||
+//     discount < 0
+//   ) {
 //     return "Invalid";
+//   }
 //   const discountedPrice = (currentPrice * discount) / 100;
 //   const newPrice = currentPrice - discountedPrice;
 //   return newPrice.toFixed(3);
 // }
 
-// const price = newPrice(1500, "20");
+// const price = newPrice(100, 12);
 // console.log(price);
 
 // Problem # 2
 
 // function validOtp(otp) {
-//   if (typeof otp !== "string") {
+//   if (typeof otp !== "string" || otp.trim() === "") {
 //     return "Invalid";
 //   } else if (!otp.startsWith("ph-") || otp.length !== 8) {
 //     return false;
 //   } else return true;
 // }
 
-// const otp = "ph-23343";
+// const otp = "ph-25345";
 // const result = validOtp(otp);
 // console.log(result);
 
 // Problem # 3
 
 // function finalScore(omr) {
+//   if (
+//     typeof omr !== "object" ||
+//     omr === null ||
+//     typeof omr.right !== "number" ||
+//     typeof omr.wrong !== "number" ||
+//     typeof omr.skip !== "number"
+//   ) {
+//     return "Invalid";
+//   }
 //   if (omr.right + omr.wrong + omr.skip !== 100) {
 //     return "Invalid";
 //   }
-//   const pointSubtract = omr.right - omr.wrong / 2;
-//   return Math.round(pointSubtract);
+//   const score = omr.right - omr.wrong / 2;
+//   return Math.round(score);
 // }
 
 // const obj = {
-//   right: 50,
-//   wrong: 10,
-//   skip: 40,
+//   right: 40,
+//   wrong: 30,
+//   skip: 30,
 // };
 // const result = finalScore(obj);
 // console.log(result);
@@ -46,7 +61,7 @@
 // Problem # 4
 
 // function gonoVote(array) {
-//   if (!Array.isArray(array)) {
+//   if (!Array.isArray(array) || array.length === 0) {
 //     return "Invalid";
 //   }
 //   let ha = 0;
@@ -64,7 +79,7 @@
 //     return true;
 //   } else return false;
 // }
-// const arr = ["ha", "na", "na", "na"];
+// const arr = [];
 // const result = gonoVote(arr);
 // console.log(result);
 
@@ -75,18 +90,18 @@ function analyzeText(str) {
     return "Invalid";
   }
   const newStr = str.split(" ");
-  let long = newStr[0];
-  let sum = 0;
+  let longwords = newStr[0];
+  let token = 0;
   for (const val of newStr) {
     const sumOfLength = val.length;
-    sum += sumOfLength;
-    if (long.length < val.length) {
-      long = val;
+    token += sumOfLength;
+    if (longwords.length < val.length) {
+      longwords = val;
     }
   }
   return {
-    longwords: long,
-    token: sum,
+    longwords,
+    token,
   };
 }
 
