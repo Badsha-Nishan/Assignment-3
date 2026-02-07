@@ -27,18 +27,43 @@
 
 // Problem # 3
 
-function finalScore(omr) {
-  if (omr.right + omr.wrong + omr.skip !== 100) {
+// function finalScore(omr) {
+//   if (omr.right + omr.wrong + omr.skip !== 100) {
+//     return "Invalid";
+//   }
+//   const pointSubtract = omr.right - omr.wrong / 2;
+//   return Math.round(pointSubtract);
+// }
+
+// const obj = {
+//   right: 50,
+//   wrong: 10,
+//   skip: 40,
+// };
+// const result = finalScore(obj);
+// console.log(result);
+
+// Problem # 4
+
+function gonoVote(array) {
+  if (!Array.isArray(array)) {
     return "Invalid";
   }
-  const pointSubtract = omr.right - omr.wrong / 2;
-  return Math.round(pointSubtract);
+  let ha = 0;
+  let na = 0;
+  for (const item of array) {
+    if (item === "ha") {
+      ha++;
+    } else if (item === "na") {
+      na++;
+    }
+  }
+  if (ha === na) {
+    return "equal";
+  } else if (ha > na) {
+    return true;
+  } else return false;
 }
-
-const obj = {
-  right: 50,
-  wrong: 10,
-  skip: 40,
-};
-const result = finalScore(obj);
+const arr = ["ha", "na", "na", "na"];
+const result = gonoVote(arr);
 console.log(result);
